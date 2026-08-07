@@ -2,7 +2,7 @@
   <img src="./docs/bear.jpg" />
 </p>
 
-[![Build Status](https://img.shields.io/github/actions/workflow/status/pmndrs/zustand/test.yml?branch=main&style=flat&colorA=000000&colorB=000000)](https://github.com/pmndrs/zustand/actions?query=workflow%3ATest)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/pmndrs/zustand/test.yml?branch=main&style=flat&colorA=000000&colorB=000000)](https://github.com/Unity-Billal-mesloub/zustand/actions?query=workflow%3ATest)
 [![Build Size](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fdeno.bundlejs.com%2F%3Fq%3Dzustand&query=%24.size.uncompressedSize&style=flat&label=bundle%20size&colorA=000000&colorB=000000)](https://bundlejs.com/?q=zustand)
 [![Version](https://img.shields.io/npm/v/zustand?style=flat&colorA=000000&colorB=000000)](https://www.npmjs.com/package/zustand)
 [![Downloads](https://img.shields.io/npm/dt/zustand.svg?style=flat&colorA=000000&colorB=000000)](https://www.npmjs.com/package/zustand)
@@ -16,7 +16,7 @@
 
 A small, fast and scalable bearbones state-management solution using simplified flux principles. Has a comfy API based on hooks, isn't boilerplatey or opinionated.
 
-Don't disregard it because it's cute. It has quite the claws, lots of time was spent dealing with common pitfalls, like the dreaded [zombie child problem](https://react-redux.js.org/api/hooks#stale-props-and-zombie-children), [react concurrency](https://github.com/bvaughn/rfcs/blob/useMutableSource/text/0000-use-mutable-source.md), and [context loss](https://github.com/facebook/react/issues/13332) between mixed renderers. It may be the one state-manager in the React space that gets all of these right.
+Don't disregard it because it's cute. It has quite the claws, lots of time was spent dealing with common pitfalls, like the dreaded [zombie child problem](https://react-redux.js.org/api/hooks#stale-props-and-zombie-children), and [context loss](https://github.com/Unity-Billal-mesloub/react/issues) between mixed renderers. It may be the one state-manager in the React space that gets all of these right.
 
 You can try a live [demo](https://zustand-demo.pmnd.rs/) and read the [docs](https://zustand.docs.pmnd.rs/).
 
@@ -169,8 +169,6 @@ const useSoundStore = create((set, get) => ({
 
 Sometimes you need to access state in a non-reactive way or act upon the store. For these cases, the resulting hook has utility functions attached to its prototype.
 
-:warning: This technique is not recommended for adding state in [React Server Components](https://github.com/reactjs/rfcs/blob/main/text/0188-server-components.md) (typically in Next.js 13 and above). It can lead to unexpected bugs and privacy issues for your users. For more details, see [#2200](https://github.com/pmndrs/zustand/discussions/2200).
-
 ```jsx
 const useDogStore = create(() => ({ paw: true, snout: true, fur: true }))
 
@@ -266,28 +264,6 @@ const Component = () => {
   ...
 ```
 
-## Sick of reducers and changing nested states? Use Immer!
-
-Reducing nested structures is tiresome. Have you tried [immer](https://github.com/mweststrate/immer)?
-
-```jsx
-import { produce } from 'immer'
-
-const useLushStore = create((set) => ({
-  lush: { forest: { contains: { a: 'bear' } } },
-  clearForest: () =>
-    set(
-      produce((state) => {
-        state.lush.forest.contains = null
-      }),
-    ),
-}))
-
-const clearForest = useLushStore((state) => state.clearForest)
-clearForest()
-```
-
-[Alternatively, there are some other solutions.](./docs/learn/guides/updating-state.md#with-immer)
 
 ## Persist middleware
 
@@ -390,8 +366,6 @@ const useReduxStore2 = create(devtools(redux(reducer, initialState)), { name, st
 ```
 
 Assigning different connection names will separate stores in redux devtools. This also helps group different stores into separate redux devtools connections.
-
-devtools takes the store function as its first argument, optionally you can name the store or configure [serialize](https://github.com/zalmoxisus/redux-devtools-extension/blob/master/docs/API/Arguments.md#serialize) options with a second argument.
 
 Name store: `devtools(..., {name: "MyStore"})`, which will create a separate instance named "MyStore" in the devtools.
 
