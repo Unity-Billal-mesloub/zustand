@@ -4,9 +4,9 @@
 
 ### Reporting Issues
 
-If you have found what you think is a bug, please [start a discussion](https://github.com/pmndrs/zustand/discussions/new?category=bug-report).
+If you have found what you think is a bug, please [start a discussion](https://github.com/Unity-Billal-mesloub/zustand/discussions/new?category=bug-report).
 
-For any usage questions, please [start a discussion](https://github.com/pmndrs/zustand/discussions/new?category=q-a).
+For any usage questions, please [start a discussion](https://github.com/Unity-Billal-mesloub/zustand/discussions/new?category=q-a).
 
 ### Suggesting New Features
 
@@ -69,22 +69,3 @@ Please try to keep your pull request focused in scope and avoid including unrela
 
 After you have submitted your pull request, we'll try to get back to you as soon as possible. We may suggest some changes or request improvements, therefore, please check ✅ ["Allow edits from maintainers"](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork) on your PR.
 
-## Zustand-specific Guideline
-
-##### Documentation
-
-Our [docs](https://zustand.docs.pmnd.rs) are based on [`pmndrs/docs`](https://github.com/pmndrs/docs).
-
-1. Separately, clone the `pmndrs/docs`. (you don't need to fork it).
-2. Inside the `pmndrs/docs` directory:
-   1. Create a `.env` file in the root directory with the next environment variables: `MDX=docs/zustand/docs` and `HOME_REDIRECT=/getting-started/introduction`.
-   2. Run `npm install` to install dependencies.
-   3. Run `npm run dev` to start the dev server.
-   4. Navigate to [`http://localhost:3000`](http://localhost:3000) to view the documents.
-3. Go Back to the forked repository:
-   1. Run `pnpm install` to install dependencies.
-   2. Navigate to the [`docs`](./docs/) folder and make necessary changes to the documents.
-   3. Add your changes to the documents and see them live reloaded in the browser. (if you don't see changes, try `control + c`, then run `npm run dev` in the cloned `pmndrs/docs` repository)
-4. Follow step 4 and onwards from the [General](#General) guide above to bring it to the finish line.
-
-Thank you for contributing! :heart:
